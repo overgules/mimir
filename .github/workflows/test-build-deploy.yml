@@ -40,3 +40,33 @@ jobs:
         with:
           name: Docker Images
           path: ./images.tar
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    container:
+      image: grafana/mimir-build-image:update-build-image-and-github-workflow-89d9d61b4
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Install Docker Client
+        run: ./.github/workflows/scripts/install-docker.sh
+      - name: Symlink Expected Path to Workspace
+        run: |
+          mkdir -p /go/src/github.com/grafana/mimir
+          ln -s $GITHUB_WORKSPACE/* /go/src/github.com/grafana/mimir
+      - name: Download Archive with Docker Images
+        uses: actions/download-artifact@v2
+        with:
+          name: Docker Images
+      - name: Extract Docker Images from Archive
+        run: tar xvf images.tar -C /
+      - name: Deploy
+        run: |
+          if [ -n "$DOCKER_PASSWORD" ]; then
+            printenv DOCKER_PASSWORD | skopeo login -u "$DOCKER_USERNAME" --password-stdin docker.io
+          fi
+          ./.github/workflows/scripts/push-images.sh /tmp/images overgules/ latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
