@@ -18,7 +18,7 @@ require (
 	github.com/golang/snappy v0.0.4
 	github.com/google/gopacket v1.1.19
 	github.com/gorilla/mux v1.8.0
-	github.com/grafana/dskit v0.0.0-20220331160727-49faf69f72ca
+	github.com/grafana/dskit v0.0.0-20220506090252-45db43a8cfe2
 	github.com/grafana/e2e v0.1.0
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/json-iterator/go v1.1.12
@@ -58,7 +58,6 @@ require (
 	github.com/google/go-github/v32 v32.1.0
 	github.com/grafana-tools/sdk v0.0.0-20211220201350-966b3088eec9
 	github.com/grafana/regexp v0.0.0-20220304095617-2e8d9baf4ac2
-	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
@@ -139,6 +138,7 @@ require (
 	github.com/googleapis/gax-go/v2 v2.2.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20191106031601-ce3c9ade29de // indirect
 	github.com/gosimple/slug v1.1.1 // indirect
+	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.0-rc.2.0.20201207153454-9f6bf00c00a7 // indirect
 	github.com/hashicorp/consul/api v1.12.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -239,6 +239,6 @@ replace github.com/hashicorp/go-hclog => github.com/hashicorp/go-hclog v0.12.2
 
 // Replace memberlist with our fork which includes some fixes that haven't been
 // merged upstream yet: https://github.com/hashicorp/memberlist/pull/260
-replace github.com/hashicorp/memberlist => github.com/grafana/memberlist v0.2.5-0.20211201083710-c7bc8e9df94b
+replace github.com/hashicorp/memberlist => github.com/grafana/memberlist v0.3.1-0.20220425183535-6b97a09b7167
 
 replace github.com/vimeo/galaxycache => github.com/thanos-community/galaxycache v0.0.0-20211122094458-3a32041a1f1e
